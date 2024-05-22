@@ -11,8 +11,15 @@ public class Main {
     );
 
     // Cuando cliente compra productos
-    business.showProducts();
+    Receipt receipt = business.sellProducts(
+            sebastian,
+            new PurchasedProduct(business.getProductById(1), 2),
+            new PurchasedProduct(empresa.getProductById(2), 1),
+            new PurchasedProduct(empresa.getProductById(3), 2),
+            new PurchasedProduct(empresa.getProductById(4), 4)
+            );
 
     // Entonces se emite una factura
+    System.out.println(receipt);
   }
 }
