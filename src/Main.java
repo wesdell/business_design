@@ -3,7 +3,7 @@ public class Main {
     // Dado cliente, empresa, productos
     Business business = new Business("SG");
     Customer sebastian = new Customer("Sebastian");
-    business.addProduct(
+    business.addProducts(
             new Product("Mochila", 89.99, 5),
             new Product("Zapatos", 50.00, 2),
             new Product("Linterna", 8.49, 10),
@@ -13,13 +13,13 @@ public class Main {
     // Cuando cliente compra productos
     Receipt receipt = business.sellProducts(
             sebastian,
-            new PurchasedProduct(business.getProductById(1), 2),
-            new PurchasedProduct(business.getProductById(2), 1),
-            new PurchasedProduct(business.getProductById(3), 2),
-            new PurchasedProduct(business.getProductById(4), 4)
+            new PurchasedProduct(business.getProductById(1), 2), // 179.98
+            new PurchasedProduct(business.getProductById(2), 1), // 50.00
+            new PurchasedProduct(business.getProductById(3), 2), // 16.98
+            new PurchasedProduct(business.getProductById(4), 4)  // 111.96
     );
 
     // Entonces se emite una factura
-    System.out.println(receipt);
+    System.out.println(receipt); // 352.75
   }
 }
