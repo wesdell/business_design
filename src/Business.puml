@@ -1,0 +1,52 @@
+@startuml
+class Business {
+  - receiptId: int
+  - products: Product[]
+  - orderId: int
+  - name: String
+  + addProducts(Product[]): void
+  + getProductById(int): Product
+  + sellProducts(Customer, PurchasedProduct[]): Receipt
+}
+class Customer {
+  - name: String
+  + toString(): String
+}
+class Date {
+  - day: int
+  - year: int
+  - month: int
+  + toString(): String
+}
+class Product {
+  - stock: int
+  - name: String
+  - price: double
+  + reduceStock(int): int
+  + toString(): String
+  + getPrice(): double
+}
+class PurchasedProduct {
+  - product: Product
+  - cost: double
+  - amount: int
+  + toString(): String
+  + getCost(): double
+}
+class Receipt {
+  - purchasedProducts: PurchasedProduct[]
+  - discount: int
+  - customer: Customer
+  - tax: double
+  - businessName: String
+  - receiptId: int
+  - total: double
+  - subtotal: double
+  + TAX_PERCENTAGE: double
+  - receiptDate: Date
+  - getSubtotal(): double
+  + toString(): String
+  - getDiscount(): int
+  - getTax(): double
+}
+@enduml
