@@ -21,7 +21,7 @@ class Date {
 class Main {
   + main(String[]): void
 }
-class Product {
+abstract class Product {
   - name: String
   - price: double
   - stock: int
