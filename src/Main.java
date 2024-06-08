@@ -4,22 +4,21 @@ public class Main {
     Business business = new Business("SG");
     Customer sebastian = new Customer("Sebastian");
     business.addProducts(
-            new Product("Mochila", 89.99, 5),
-            new Product("Zapatos", 50.00, 2),
-            new Product("Linterna", 8.49, 10),
-            new Product("Gorra", 27.99, 4)
+            new ProductWithIVA("Mochila", 89.99, 5),
+            new ProductWithoutIVA("Zapatos", 50.00, 1),
+            new ProductWithoutIVA("Linterna", 5.56, 3),
+            new ProductWithIVA("Gorra", 3.00, 2)
     );
 
     // Cuando cliente compra productos
     Receipt receipt = business.sellProducts(
             sebastian,
-            new PurchasedProduct(business.getProductById(1), 2), // 179.98
-            new PurchasedProduct(business.getProductById(2), 1), // 50.00
-            new PurchasedProduct(business.getProductById(3), 2), // 16.98
-            new PurchasedProduct(business.getProductById(4), 4)  // 111.96
+            new PurchasedProduct(business.getProductById(1), 4),
+            new PurchasedProduct(business.getProductById(2), 4),
+            new PurchasedProduct(business.getProductById(4), 1)
     );
 
     // Entonces se emite una factura
-    System.out.println(receipt); // 352.75
+    System.out.println(receipt);
   }
 }
