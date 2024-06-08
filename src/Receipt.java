@@ -5,9 +5,9 @@ public class Receipt {
 
   private final int receiptId;
   private final int discount;
-  private final double subtotal;
+  private double subtotal;
   private final double total;
-  private final double tax;
+  private double vat;
   private final String businessName;
   private final Date receiptDate;
   private final Customer customer;
@@ -19,26 +19,20 @@ public class Receipt {
     this.customer = customer;
     this.businessName = businessName;
     this.purchasedProducts = purchasedProducts;
-    this.subtotal = this.getSubtotal();
+    this.setSubtotalAndVAT();
     this.discount = this.getDiscount();
-    this.tax = this.getTax();
-    this.total = this.subtotal + this.tax - this.discount;
+    this.total = this.subtotal + this.vat - this.discount;
   }
 
-  private double getSubtotal() {
-    double subtotal = 0;
+  private void setSubtotalAndVAT() {
     for (PurchasedProduct purchasedProduct : purchasedProducts) {
-      subtotal += purchasedProduct.getCost();
+      this.subtotal += purchasedProduct.getCost();
+      this.vat += purchasedProduct.getVAT();
     }
-    return subtotal;
   }
 
   private int getDiscount() {
     return (int) (this.subtotal / 100) * 20;
-  }
-
-  private double getTax() {
-    return this.subtotal * TAX_PERCENTAGE;
   }
 
   @Override
@@ -50,7 +44,7 @@ public class Receipt {
             "receiptDate: " + this.receiptDate + "\n" +
             "purchasedProducts: " + Arrays.toString(this.purchasedProducts) + "\n" +
             "subtotal: " + this.subtotal + "\n" +
-            "tax: " + this.tax + "\n" +
+            "tax: " + this.vat + "\n" +
             "discount: " + this.discount + "\n" +
             "total: " + this.total;
   }

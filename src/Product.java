@@ -1,4 +1,4 @@
-public class Product {
+public abstract class Product {
   private final String name;
   private final double price;
   private int stock;
@@ -27,4 +27,6 @@ public class Product {
   public String toString() {
     return this.name;
   }
+
+  public abstract double getVAT();
 }

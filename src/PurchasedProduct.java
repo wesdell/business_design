@@ -5,12 +5,16 @@ public class PurchasedProduct {
 
   public PurchasedProduct(Product product, int amount) {
     this.product = product;
-    this.amount = amount;
+    this.amount = product.reduceStock(amount);
     this.cost = product.getPrice() * this.amount;
   }
 
   public double getCost() {
     return this.cost;
+  }
+
+  public double getVAT() {
+    return this.product.getVAT() * this.amount;
   }
 
   @Override
