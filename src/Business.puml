@@ -1,11 +1,11 @@
 @startuml
 class Business {
   - receiptId: int
-  - products: Product[]
   - orderId: int
   - name: String
-  + addProducts(Product[]): void
+  - products: Product[]
   + getProductById(int): Product
+  + addProducts(Product[]): void
   + sellProducts(Customer, PurchasedProduct[]): Receipt
 }
 class Customer {
@@ -14,39 +14,55 @@ class Customer {
 }
 class Date {
   - day: int
-  - year: int
   - month: int
+  - year: int
   + toString(): String
 }
+class Main {
+  + main(String[]): void
+}
 class Product {
-  - stock: int
   - name: String
   - price: double
+  - stock: int
+  + getPrice(): double
   + reduceStock(int): int
   + toString(): String
-  + getPrice(): double
+  + getVAT(): double
+}
+class ProductWithIVA {
+  + VAT_PERCENTAGE: double
+  - vat: double
+  - setVat(): double
+  + getVAT(): double
+}
+class ProductWithoutIVA {
+  + getVAT(): double
 }
 class PurchasedProduct {
   - product: Product
-  - cost: double
   - amount: int
-  + toString(): String
+  - cost: double
+  + getVAT(): double
   + getCost(): double
+  + toString(): String
 }
 class Receipt {
-  - purchasedProducts: PurchasedProduct[]
-  - discount: int
-  - customer: Customer
-  - tax: double
-  - businessName: String
+  - receiptDate: Date
   - receiptId: int
   - total: double
-  - subtotal: double
   + TAX_PERCENTAGE: double
-  - receiptDate: Date
-  - getSubtotal(): double
+  - vat: double
+  - discount: int
+  - businessName: String
+  - subtotal: double
+  - customer: Customer
+  - purchasedProducts: PurchasedProduct[]
   + toString(): String
+  - setSubtotalAndVAT(): void
   - getDiscount(): int
-  - getTax(): double
 }
+
+ProductWithIVA     --|>  Product
+ProductWithoutIVA  --|>  Product
 @enduml
