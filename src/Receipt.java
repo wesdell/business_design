@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Receipt {
   public static final double TAX_PERCENTAGE = 0.15;
@@ -11,14 +12,14 @@ public class Receipt {
   private final String businessName;
   private final Date receiptDate;
   private final Customer customer;
-  private final PurchasedProduct[] purchasedProducts;
+  private final ArrayList<PurchasedProduct> purchasedProducts = new ArrayList<>();
 
   public Receipt(int receiptId, Date receiptDate, Customer customer, String businessName, PurchasedProduct[] purchasedProducts) {
     this.receiptId = receiptId;
     this.receiptDate = receiptDate;
     this.customer = customer;
     this.businessName = businessName;
-    this.purchasedProducts = purchasedProducts;
+    this.purchasedProducts.addAll(List.of(purchasedProducts));
     this.setSubtotalAndVAT();
     this.discount = this.getDiscount();
     this.total = this.subtotal + this.vat - this.discount;
@@ -42,7 +43,7 @@ public class Receipt {
             "businessName: " + this.businessName + "\n" +
             "customer: " + this.customer + "\n" +
             "receiptDate: " + this.receiptDate + "\n" +
-            "purchasedProducts: " + Arrays.toString(this.purchasedProducts) + "\n" +
+            "purchasedProducts: " + this.purchasedProducts + "\n" +
             "subtotal: " + this.subtotal + "\n" +
             "tax: " + this.vat + "\n" +
             "discount: " + this.discount + "\n" +

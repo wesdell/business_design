@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Business {
   private final String name;
-  private Product[] products;
+  private final ArrayList<Product> products = new ArrayList<>();
   private int receiptId;
   private int orderId;
 
@@ -9,7 +12,7 @@ public class Business {
   }
 
   public void addProducts(Product... products) {
-    this.products = products;
+    this.products.addAll(List.of(products));
   }
 
   public Receipt sellProducts(Customer customer, PurchasedProduct... purchasedProducts) {
@@ -24,9 +27,9 @@ public class Business {
   }
 
   public Product getProductById(int id) {
-    if (id <= 0 || id > products.length) {
+    if (id <= 0 || id > products.size()) {
       return null;
     }
-    return this.products[id - 1];
+    return this.products.get(id - 1);
   }
 }
