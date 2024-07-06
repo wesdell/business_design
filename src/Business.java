@@ -5,7 +5,6 @@ public class Business {
   private final String name;
   private final ArrayList<Product> products = new ArrayList<>();
   private int receiptId;
-  private int orderId;
 
   public Business(String name) {
     this.name = name;
@@ -16,14 +15,13 @@ public class Business {
   }
 
   public Receipt sellProducts(Customer customer, PurchasedProduct... purchasedProducts) {
-    Receipt receipt = new Receipt(
+      return new Receipt(
             receiptId++,
             new Date(7, 12, 2024),
             customer,
             this.name,
             purchasedProducts
     );
-    return receipt;
   }
 
   public Product getProductById(int id) {

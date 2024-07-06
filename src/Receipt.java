@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Receipt {
-  public static final double TAX_PERCENTAGE = 0.15;
-
   private final int receiptId;
   private final int discount;
   private double subtotal;
